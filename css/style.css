@@ -1,0 +1,313 @@
+html,
+body {
+    font-family: "Ubuntu", sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    height: 100vh;
+}
+h1 {
+    font-size: 40px;
+}
+h2 {
+    font-size: 32px;
+}
+p {
+    font-size: 20px;
+}
+b {
+    color: #c23616;
+}
+ul {
+    list-style: none;
+}
+/* pager */
+.pager {
+    margin: 20px 0 100px 0;
+}
+.pager li a {
+    background: #f2f2f2 !important;
+    color: #1a1a1a;
+    margin: 0 5px;
+}
+.pager li .active_link {
+    background: #1a1a1a !important;
+    color: #c23616;
+}
+/* NAVIGACIJA  */
+.navbar {
+    background: #1a1a1a;
+    color: #fff;
+}
+.navbar .navbar-brand,
+.navbar .navbar-brand:hover {
+    background: #1a1a1a;
+    color: #c23616 !important;
+    border-right: 3px solid #c23616;
+}
+.navbar a {
+    color: #fff !important;
+    font-weight: bold;
+}
+.navbar li i {
+    color: #c23616 !important;
+}
+.navbar .nav:first-child li:hover,
+.navbar .navbar-right li:first-child:hover {
+    background: transparent;
+}
+.navbar li:hover a {
+    color: #c23616 !important;
+}
+.navbar .search i,
+.input-group-addon i {
+    font-size: 18px;
+}
+.input-group-addon {
+    min-width: 40px;
+    max-width: 40px;
+    text-align: center;
+}
+
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:focus,
+.navbar-inverse .navbar-nav > .open > a:hover {
+    background-color: #1a1a1a;
+    color: #c23616 !important;
+}
+.navbar-form .btn {
+    background: #1a1a1a;
+    color: #fff;
+    transition: all 0.5s;
+}
+.navbar-form .btn:hover,
+.navbar-form input:focus.btn,
+.navbar-form input {
+    font-weight: bold;
+    color: #c23616;
+    background: #1a1a1a;
+    border: 1px solid white;
+}
+.navbar .dropdown-menu {
+    background: #1a1a1a;
+}
+.navbar .dropdown-menu a {
+    color: #fff;
+}
+.navbar .dropdown-menu li a {
+    color: #fff !important;
+}
+.navbar .dropdown-menu a:hover {
+    background: #1a1a1a;
+    color: #c23616 !important;
+}
+
+/* FOOTER */
+footer {
+    background-color: #1a1a1a;
+    color: #fff;
+    margin: 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+footer p {
+    margin: 0;
+    font-size: 12px;
+}
+/**** filmovi = products ****/
+/****************************/
+small a,
+small a:visited {
+    color: #999;
+    text-decoration: none;
+}
+small a:hover {
+    color: #555;
+    text-decoration: none;
+}
+
+.products-list a {
+    text-decoration: none;
+    color: #c23616;
+    transition: all 0.3s;
+    text-align: center;
+}
+.products-list a:hover {
+    color: #fff;
+}
+.products-list ul {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.film-kartiza__naziv {
+    text-decoration: none;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.film-kartica__opis {
+    text-align: justify;
+    font-size: 1.15em;
+}
+.film-kartiza__slika-wrapper {
+    width: 280px;
+}
+.film-kartiza__slika-wrapper img {
+    width: 200px;
+    height: 300px;
+    -webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
+    margin-bottom: 5px;
+}
+.film-kartiza__slika-wrapper:hover img {
+    transform: scale(1.03);
+    transition: all 0.5s ease;
+}
+.film-kartica {
+    background-color: #1a1a1a;
+    padding: 0 10px;
+    padding-bottom: 2em;
+    margin: 0 1em 1em 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    color: #fff;
+}
+.film-kartica:hover {
+    opacity: 1;
+    transition: all 0.5s;
+    background-color: #000;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.film-kartica p {
+    font-size: 1em;
+    text-align: justify;
+    max-width: 230px;
+}
+.film-kartica__dugme {
+    display: block;
+}
+
+button.snip0059 {
+    border: none;
+    background-color: #000000;
+    border-radius: 5px;
+    color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    padding: 15px 30px;
+    display: inline-block;
+    margin: 0 auto;
+    letter-spacing: 1px;
+    font-weight: 500;
+    font-size: 1em;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+}
+button.snip0059:before {
+    content: "";
+    display: block;
+    border-radius: 3px;
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 50%;
+    right: 50%;
+    background-color: #ffffff;
+    border-left: 2px solid rgba(255, 255, 255, 0.8);
+    border-right: 2px solid rgba(255, 255, 255, 0.8);
+    opacity: 0;
+    -webkit-transition: all 0.3s;
+    transition: all 0.4s;
+    -webkit-transition-delay: 0.3s;
+    transition-delay: 0.3s;
+}
+button.snip0059:hover,
+button.snip0059.hover {
+    color: #c23616;
+    -webkit-animation: flashText 0.5s;
+    animation: flashText 0.5s;
+    transform: scale(1.1);
+    transition: all 0.25s;
+}
+button.snip0059:hover:before,
+button.snip0059.hover:before {
+    left: 12px;
+    right: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    opacity: 0.8;
+}
+button.snip0059:active:before {
+    background-color: rgba(255, 255, 255, 0.3);
+    opacity: 1;
+    -webkit-transition-delay: 0s;
+    transition-delay: 0s;
+}
+button.snip0059.blue {
+    background-color: #1a1a1a;
+}
+
+@-webkit-keyframes flashText {
+    0% {
+        color: rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        color: transparent;
+    }
+    100% {
+        color: #c23616;
+    }
+}
+@keyframes flashText {
+    0% {
+        color: rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        color: transparent;
+    }
+    100% {
+        color: #c23616;
+    }
+}
+
+.film-kartica {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.film-kartica__opis {
+    flex-grow: 1;
+}
+@media (min-width: 800px) {
+    .products-list {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+.categories-list a {
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #1a1a1a;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    transition: all 0.4s;
+    text-transform: uppercase;
+}
+
+.categories-list a:hover {
+    background: #1a1a1a;
+    color: #c23616;
+}
+/**** END OF PRODUCTS ****/
+/*************************/

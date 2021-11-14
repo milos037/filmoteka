@@ -1,0 +1,119 @@
+/* Globalne  */
+:root {
+  background: #fff !important;
+}
+body {
+  margin-top: 100px;
+  background-color: #222;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+@media(min-width:768px) {
+  body {
+      margin-top: 50px;
+  }
+}
+
+#wrapper {
+  padding-left: 0;
+}
+
+#page-wrapper {
+  width: 100%;
+  padding: 0;
+  background-color: #fff;
+}
+@media(min-width:768px) {
+  #wrapper {
+      padding-left: 225px;
+  }
+
+  #page-wrapper {
+      padding: 10px;
+  }
+}
+
+/* Navigacija */
+.navbar-inverse {
+  background-color: #1a1a1a;
+}
+.navbar-inverse li i {
+  color: #C23616;
+}
+.top-nav {
+  padding-left: 0 !important;
+}
+.top-nav>li {
+  display: inline-block;
+  
+}
+
+.top-nav>li>a {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  line-height: 20px;
+  color: #999;
+}
+
+.top-nav>li>a:hover,
+.top-nav>li>a:focus,
+.top-nav>.open>a,
+.top-nav>.open>a:hover,
+.top-nav>.open>a:focus {
+  color: #fff;
+  background-color: #000;
+}
+.top-nav>.open>.dropdown-menu {
+  float: left;
+  position: absolute;
+  margin-top: 0;
+  border: 1px solid rgba(0,0,0,.15);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background-color: #fff;
+  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+.top-nav>.open>.dropdown-menu>li>a {
+  white-space: normal;
+}
+.top-nav .avatar{
+  max-width: 15px;
+}
+.movie-image {
+  position: absolute;
+  right: 15px;
+  top: 0;
+  width: 200px;
+  height: 275px;
+  background: #fff;
+  border: 1px solid #eee;
+  text-align: center;
+}
+.movie-image img {
+  max-width: 150px;
+  min-width: 150px;
+  height:225px;
+  margin-top: 25px
+}
+
+/* Font awesome ikonice */
+.fa-times-circle{
+  color: red;
+}
+.fa-edit {
+  color: purple;
+}
+.fa-check-circle {
+  color: green;
+}
+.fa-trash {
+  color: black;
+}
+/* centriranje svih tabela */
+table th,
+table td {
+  text-align: center !important;
+
+}
