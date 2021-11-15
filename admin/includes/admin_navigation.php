@@ -20,13 +20,13 @@
                 <a href="filmovi.php"><i class="fa fa-film" aria-hidden="true"></i>&nbsp;&nbsp;Svi filmovi</a>
             </li>
             <li>
-                <a href="categories.php"><i class="fa fa-navicon"></i>&nbsp;&nbsp;Žanrovi</a>
+                <a href="zanrovi.php"><i class="fa fa-navicon"></i>&nbsp;&nbsp;Žanrovi</a>
             </li>
             <li>
-                <a href="comments.php"><i class="fa fa-comments"></i>&nbsp;&nbsp;Komentari</a>
+                <a href="komentari.php"><i class="fa fa-comments"></i>&nbsp;&nbsp;Komentari</a>
             </li>
             <li>
-                <a href="users.php"><i class="fa fa-users"></i>&nbsp;&nbsp;Korisnici</a>
+                <a href="korisnici.php"><i class="fa fa-users"></i>&nbsp;&nbsp;Korisnici</a>
             </li>
             
             </ul>

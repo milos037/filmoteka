@@ -112,7 +112,7 @@ Dodaj novi film</a>
                 echo "<td>$film_datum</td>";
 
                 $count_comments = return_num_rows("SELECT * FROM komentari WHERE film_id = $film_id");
-                echo "<td><a href='post_comments.php?id=$film_id'>$count_comments</a></td>";
+                echo "<td><a href='komentari.php?id=$film_id'>$count_comments</a></td>";
                     
                 echo "<td style='font-size: 2em;'><a href='../film.php?f_id=$film_id'<i class='fa fa-fw fa-eye'></i></a>
                 <a href='filmovi.php?source=izmeni_film&f_id={$film_id}'><i class='fa fa-fw fa-edit'></i></a>

@@ -83,16 +83,15 @@ function confirmQuery($result) {
 
 
 // dodaj nove zanrove
-function insert_categories(){
+function dodaj_zanr(){
     
     global $connection;
 
         if(isset($_POST['submit'])){
 
-            $cat_title = $_POST['cat_title'];
+            $naziv_zanra = $_POST['naziv_zanra'];
 
-        if($cat_title == "" || empty($cat_title)) {
-        
+        if($naziv_zanra == "" || empty($naziv_zanra)) {
              echo "Polje ne sme biti prazno!";
        return 0;
     
@@ -102,9 +101,9 @@ function insert_categories(){
 
 
 
-    $stmt = mysqli_prepare($connection, "INSERT INTO categories(cat_title) VALUES(?) ");
+    $stmt = mysqli_prepare($connection, "INSERT INTO zanrovi(naziv) VALUES(?) ");
 
-    mysqli_stmt_bind_param($stmt, 's', $cat_title);
+    mysqli_stmt_bind_param($stmt, 's', $naziv_zanra);
 
     mysqli_stmt_execute($stmt);
 
@@ -127,45 +126,31 @@ function insert_categories(){
 }
 
 // prikazi sve zanrove
-function findAllCategories() {
-global $connection;
+function svi_zanrovi() {
+    foreach (select_zanrovi() as $zanr):
+        $naziv_kategorije = $zanr['naziv'];
+        $id_zanra = $zanr['id'];
 
-    $query = "SELECT * FROM categories";
-    $select_categories = mysqli_query($connection,$query);  
-
-    while($row = mysqli_fetch_assoc($select_categories)) {
-    $cat_id = $row['cat_id'];
-    $cat_title = $row['cat_title'];
-
-    echo "<tr>";
+        echo "<tr>";
         
-    echo "<td>{$cat_id}</td>";
-    echo "<td>{$cat_title}</td>";
-    echo "<td style='font-size: 2rem; text-align: center;'><a href='categories.php?edit={$cat_id}'><i class='fa fa-fw fa-edit'></i></a></td>";
-    echo "<td style='font-size: 2rem; text-align: center;'><a href='categories.php?delete={$cat_id}' onclick=\"return confirm('Da li ste sigurni da želite da obrišete?');\"><i class='fa fa-fw fa-times-circle'></i></a></td>";
-  
-    echo "</tr>";
-
-    }
-
-
+        echo "<td>{$id_zanra}</td>";
+        echo "<td>{$naziv_kategorije}</td>";
+        echo "<td style='font-size: 2rem; text-align: center;'><a href='zanrovi.php?izmeni={$id_zanra}'><i class='fa fa-fw fa-edit'></i></a></td>";
+        echo "<td style='font-size: 2rem; text-align: center;'><a href='zanrovi.php?izbrisi={$id_zanra}' onclick=\"return confirm('Da li ste sigurni da želite da obrišete?');\"><i class='fa fa-fw fa-times-circle'></i></a></td>";
+      
+        echo "</tr>";
+    endforeach;
 }
 
 // izbrisi zanr
-function deleteCategories(){
-global $connection;
-
-    if(isset($_GET['delete'])){
-    $the_cat_id = $_GET['delete'];
-    $query = "DELETE FROM categories WHERE cat_id = {$the_cat_id} ";
-    $delete_query = mysqli_query($connection,$query);
-    header("Location: categories.php");
-
-
-    }
-            
-
-
+function izbrisi_zanr(){
+    global $connection;
+    if(isset($_GET['izbrisi'])):
+        $id_zanra = $_GET['izbrisi'];
+        $query = "DELETE FROM zanrovi WHERE id = {$id_zanra} ";
+        $delete_query = mysqli_query($connection,$query);
+        header("Location: zanrovi.php");
+    endif;
 }
 // funkcija za logovanje koja se poziva u login.php
  function login_user($username, $password)
