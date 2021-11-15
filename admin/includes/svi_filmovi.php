@@ -27,6 +27,7 @@ if(isset($_POST['checkBoxArray'])){
                     $film_poster = $film['poster'];
                     $film_tagovi = $film['tagovi'];
                     $film_sadrzaj = $film['sadrzaj'];
+                    
                 endforeach; 
        
                 $kolinraj_sql= "INSERT INTO filmovi (zanr_id, naziv, autor, datum, poster, sadrzaj, tagovi, status)
@@ -56,7 +57,7 @@ if(isset($_POST['checkBoxArray'])){
 Dodaj novi film</a>
     </div>
     <div class="clearfix"></div>
-    <table class="table table-bordered table-hover" id="example">
+    <table class="table table-bordered" id="example">
         <thead>
             <tr>
                 <th><input id="selectAllBoxes" type="checkbox"></th>
@@ -92,13 +93,16 @@ Dodaj novi film</a>
                 $film_zemlja = $film['zemlja']; 
                 $film_studio = $film['studio'];
                             
-                $film_status = $film_status == "objavljen" ? "Objavljen" : "Sakriven";                
+                
+                
+                $film_status_prikaz = $film_status == 'objavljen' ? '<b class="text-success">Objavljen</b>' : '<span class="text-danger">Sakriven</span>';
+                $red_bg = $film_status != "objavljen" ? "bg-danger text-white" : "";
             ?>   
-        <tr>
+        <tr class="<?=$red_bg?>">
             <td><input class='checkBoxes' type='checkbox' name="checkBoxArray[]" value="<?=$film_id?>"></td>
             <?php                     
-                echo "<td>$film_id</td>";
-                echo "<td>$film_naziv</td>";
+                echo "<td><a href='filmovi.php?source=izmeni_film&f_id={$film_id}'>$film_id</a></td>";
+                echo "<td><a href='filmovi.php?source=izmeni_film&f_id={$film_id}'>$film_naziv</a></td>";
                 
                 $sql_zanrovi = "SELECT naziv FROM zanrovi WHERE id = '{$film_zanr}' ; ";
                 foreach (select_query($sql_zanrovi) as $zanr):
@@ -106,7 +110,7 @@ Dodaj novi film</a>
                     echo "<td>$naziv_kategorije</td>";    
                 endforeach;                    
                     
-                echo "<td>$film_status</td>";
+                echo "<td>$film_status_prikaz</td>";
                 echo "<td><img src='../images/$film_poster' width='100px'</td>";
                 echo "<td>$film_tagovi</td>";
                 echo "<td>$film_datum</td>";
@@ -114,10 +118,10 @@ Dodaj novi film</a>
                 $count_comments = return_num_rows("SELECT * FROM komentari WHERE film_id = $film_id");
                 echo "<td><a href='komentari.php?id=$film_id'>$count_comments</a></td>";
                     
-                echo "<td style='font-size: 2em;'><a href='../film.php?f_id=$film_id'<i class='fa fa-fw fa-eye'></i></a>
-                <a href='filmovi.php?source=izmeni_film&f_id={$film_id}'><i class='fa fa-fw fa-edit'></i></a>
-                <a href='filmovi.php?delete={$film_id}' onclick=\"return confirm('Da li ste sigurni da želite da obrišete film?');\"><i class='fa fa-fw fa-times-circle'></i></a></td>";
-                echo "<td><a href ='filmovi.php?reset={$film_id}' onclick=\"return confirm('Da li ste sigurni da želite da restartujete preglede?');\"><i class='fa fa-fw fa-refresh'></i></a><strong>&nbsp;&nbsp;&nbsp;{$film_broj_pregleda}</strong></td>";    
+                echo "<td style='font-size: 2em;'><a href='../film.php?f_id=$film_id' title='Pogledaj film - {$film_naziv}'><i class='fa fa-fw fa-eye'></i></a>
+                <a href='filmovi.php?source=izmeni_film&f_id={$film_id}' title='Izmeni film - {$film_naziv}'><i class='fa fa-fw fa-edit'></i></a>
+                <a href='filmovi.php?delete={$film_id}' title='Obrisi film - {$film_naziv}' onclick=\"return confirm('Da li ste sigurni da želite da obrišete film?');\"><i class='fa fa-fw fa-times-circle'></i></a></td>";
+                echo "<td><a href ='filmovi.php?reset={$film_id}' title='Restartuj preglede za film - {$film_naziv}' onclick=\"return confirm('Da li ste sigurni da želite da restartujete preglede?');\"><i class='fa fa-fw fa-refresh'></i></a><strong>&nbsp;&nbsp;&nbsp;{$film_broj_pregleda}</strong></td>";    
                 
                 echo "</tr>";
             endforeach;

@@ -40,7 +40,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="../images/<?php echo $_SESSION['image']; ?>" class='avatar'>&nbsp;<?php echo " ". $_SESSION['firstname']; ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="../admin/profile.php"><i class="fa fa-fw fa-user"></i> Profil</a>
+                            <a href="../admin/profil.php"><i class="fa fa-fw fa-user"></i> Profil</a>
                         </li>
                         <li>
                         <li><a href="../includes/logout.php"><i class="fa fa-fw fa-power-off"></i> Odjavi se</a>

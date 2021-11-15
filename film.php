@@ -2,7 +2,7 @@
 <?php include 'includes/header.php'; ?>
 <?php include 'includes/navigation.php'; ?>
 <!-- skripta za GOOGLE MAPU -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACsttdzuma--8b07wAksCPbg4OGGvr1uwMilos"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4hO_he-x_u5coUdnA1SwO4pxFAuaqvSM"></script>
 
 <!-- css koji se SAMO koristi na ovoj strani -->
 <style>
@@ -138,7 +138,6 @@
                         $film_poster = $film['poster'];
                         $film_sadrzaj = $film['sadrzaj'];
                         $film_status = $film['status'];
-                        $film_prosecna_ocena = $film['prosecna_ocena'];
                         $film_autor = $film['autor'];
                         $film_datum = $film['datum'];
                         $film_glumci = $film['glumci'];
@@ -213,13 +212,21 @@ if (isset($_POST['create_comment'])):
     $komentar_autor = $_SESSION['user_id'];
     $komentar_sadrzaj = $_POST['komentar_sadrzaj'];
     $komentar_ocena = $_POST['komentar_ocena'];
-
+    
     if (!empty($komentar_autor) && !empty($komentar_sadrzaj)):
 
-        $sql_komentar = "INSERT INTO komentari (film_id, autor, sadrzaj, ocena , status,datum)
+        $sql_komentar = "INSERT INTO komentari (film_id, autor_id, sadrzaj, ocena , status,datum)
         VALUES ($film_id ,'{$komentar_autor}', '{$komentar_sadrzaj}', '{$komentar_ocena}', 'approved','{$date}')";
         if (!insert_update_query($sql_komentar))
             die('Neuspelo ubacivanje komentara ' . mysqli_error($connection));
+        else {
+            $novi_prosek = select_query("SELECT AVG(ocena) as nova_prosecna_ocena FROM komentari
+            WHERE film_id = $film_id")[0];
+            $nova_prosecna_ocena = round(floatval($novi_prosek["nova_prosecna_ocena"]),2);
+            $promeni_prosecnu_ocenu = "UPDATE filmovi SET prosecna_ocena='{$nova_prosecna_ocena}' WHERE id = {$film_id} ";
+            insert_update_query($promeni_prosecnu_ocenu);
+            header("Refresh:0");
+        }
     endif;
 endif;
 ?> 
@@ -259,10 +266,6 @@ endif; //sakriven ?>
 <hr>            
 <?php
 
-$ocena = 0;
-$br_ocena = 0;
-$trenutna_ocena = 0;
-
 $sql_prikupi_komentare = "SELECT *, CONCAT(k.ime, ' ', k.prezime) as autor FROM komentari kom
 JOIN korisnici k ON (kom.autor_id = k.id)
 WHERE kom.film_id = {$film_id} ";
@@ -276,9 +279,6 @@ foreach ($komentari as $komentar):
     $komentar_sadrzaj = $komentar['sadrzaj'];
     $komentar_autor = $komentar['autor'];
     $komentar_ocena = $komentar['ocena'];
-
-    $br_ocena++;
-    $ocena += $komentar_ocena;
 ?>        
 <!-- Pregled komentara -->
     <div class="media">
@@ -320,11 +320,6 @@ foreach ($komentari as $komentar):
     </div>
 <?php
 endforeach; //kraj prikaza komentara
-
-// if ($br_ocena > 0) $trenutna_ocena += $ocena / $br_ocena;
-// $query = "UPDATE posts SET post_avg_mark='{$trenutna_ocena}' WHERE post_id = {$film_id} ";
-// $edit_post_query = mysqli_query($connection, $query);
-
 ?>
 
                 </div>

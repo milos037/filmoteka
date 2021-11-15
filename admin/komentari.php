@@ -14,17 +14,17 @@ if(isset($_POST['checkBoxArray'])):
     $bulk_options = $_POST['bulk_options'];
         switch($bulk_options):
         case 'approved':  
-            $query = "UPDATE comments SET comment_status = '{$bulk_options}' WHERE comment_id = {$commentValueId}  ";
+            $query = "UPDATE komentari SET status = '{$bulk_options}' WHERE id = {$commentValueId}  ";
             $update_to_approved_status = mysqli_query($connection,$query);
             confirmQuery( $update_to_approved_status);
         break;    
         case 'unapproved':
-            $query = "UPDATE comments SET comment_status = '{$bulk_options}' WHERE comment_id = {$commentValueId}  ";
+            $query = "UPDATE komentari SET status = '{$bulk_options}' WHERE id = {$commentValueId}  ";
             $update_to_unapproved_status = mysqli_query($connection,$query);
             confirmQuery($update_to_unapproved_status);
         break;
         case 'delete':        
-            $query = "DELETE FROM comments WHERE comment_id = {$commentValueId}  ";
+            $query = "DELETE FROM komentari WHERE id = {$commentValueId}  ";
             $update_to_delete = mysqli_query($connection,$query);
             confirmQuery($update_to_delete);
         break;
@@ -42,9 +42,11 @@ endif;
         </select>
     </div>                 
     <div class="col-md-4">
-    <input type="submit" name="submit" class="btn btn-success" value="Potvrdi">
+        <input type="submit" name="submit" class="btn btn-success" value="Potvrdi">
     </div>
-    <table class="table table-bordered table-hover">
+
+<div class="col-md-12" style="padding: 0">
+    <table class="table table-bordered" id="example">
         <thead>
             <tr>
             <th><input id="selectAllBoxes" type="checkbox"></th>
@@ -74,7 +76,12 @@ endif;
         $komentar_datum       = $row['datum'];
         $komentar_ocena       = $row['ocena'];
        
-        echo "<tr>";
+      
+        $komentar_status_prikaz = $komentar_status == 'approved' ? '<b class="text-success">dozvoljen</b>' : '<span class="text-danger">zabranjen</span>';
+
+
+        $red_bg = $komentar_status != "approved" ? "bg-danger text-white" : "";
+        echo "<tr class='$red_bg'>";
     ?>
         
     <td>
@@ -86,13 +93,9 @@ endif;
         echo "<td>$komentar_sadrzaj</td>"; 
         echo "<td>$komentar_ocena</td>";       
         
-        if ($komentar_status == 'approved'){
-            $komentar_status = 'dozvoljen';
-        } else {
-            $komentar_status = 'zabranjen';
-        }
+        
 
-        echo "<td>$komentar_status</td>";
+        echo "<td>$komentar_status_prikaz</td>";
         
         
         $query = "SELECT id, naziv FROM filmovi WHERE id = $komentar_film_id ";
@@ -104,22 +107,22 @@ endif;
         }
 
         echo "<td>$komentar_datum</td>";
-        echo "<td><a href='komentari.php?odobri=$komentar_id&post=$komentar_film_id'><i class='fa fa-check-circle' aria-hidden='true'></i>&nbsp;Dozvoli</a></td>";
-        echo "<td><a href='komentari.php?sakrij=$komentar_id&post=$komentar_film_id'><i class='fa fa-times-circle' aria-hidden='true'></i>&nbsp;Zabrani</a></td>";
-        echo "<td><a href='komentari.php?izbrisi=$komentar_id&post=$komentar_film_id'><i class='fa fa-trash' aria-hidden='true'></i>&nbsp;Izbriši</a></td>";
+        echo "<td><a href='komentari.php?odobri=$komentar_id'><i class='fa fa-check-circle' aria-hidden='true'></i>&nbsp;Dozvoli</a></td>";
+        echo "<td><a href='komentari.php?sakrij=$komentar_id'><i class='fa fa-times-circle' aria-hidden='true'></i>&nbsp;Zabrani</a></td>";
+        echo "<td><a href='komentari.php?izbrisi=$komentar_id'><i class='fa fa-trash' aria-hidden='true'></i>&nbsp;Izbriši</a></td>";
         echo "</tr>";
    
     }
     ?>
     </tbody>
-</table>      
+</table>   
+</div>   
 </form>       
 <?php
 
 if(isset($_GET['odobri'])):
-    $$id_komentara = escape($_GET['odobri']);
-    
-    $query = "UPDATE komentari SET status = 'approved' WHERE id = $id_komentara   ";
+    $id_komentara = escape($_GET['odobri']);
+    $query = "UPDATE komentari SET status = 'approved' WHERE id = $id_komentara";
     $approve_comment_query = mysqli_query($connection, $query);
     header("Location: komentari.php");
 endif;
@@ -128,7 +131,7 @@ endif;
 if(isset($_GET['sakrij'])):
     $id_komentara = escape($_GET['sakrij']);
 
-    $query = "UPDATE komentari SET status = 'unapproved' WHERE id = $$id_komentara ";
+    $query = "UPDATE komentari SET status = 'unapproved' WHERE id = $id_komentara ";
     $unapprove_comment_query = mysqli_query($connection, $query);
     header("Location: komentari.php");
 endif;

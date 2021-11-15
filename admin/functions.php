@@ -135,8 +135,8 @@ function svi_zanrovi() {
         
         echo "<td>{$id_zanra}</td>";
         echo "<td>{$naziv_kategorije}</td>";
-        echo "<td style='font-size: 2rem; text-align: center;'><a href='zanrovi.php?izmeni={$id_zanra}'><i class='fa fa-fw fa-edit'></i></a></td>";
-        echo "<td style='font-size: 2rem; text-align: center;'><a href='zanrovi.php?izbrisi={$id_zanra}' onclick=\"return confirm('Da li ste sigurni da želite da obrišete?');\"><i class='fa fa-fw fa-times-circle'></i></a></td>";
+        echo "<td style='font-size: 2rem; text-align: center;'><a href='zanrovi.php?izmeni={$id_zanra}' title='Promeni naziv zanra - {$naziv_kategorije}'><i class='fa fa-fw fa-edit'></i></a></td>";
+        echo "<td style='font-size: 2rem; text-align: center;'><a href='zanrovi.php?izbrisi={$id_zanra}' title='Obrisi zanr - {$naziv_kategorije}' onclick=\"return confirm('Da li ste sigurni da želite da obrišete?');\"><i class='fa fa-fw fa-times-circle'></i></a></td>";
       
         echo "</tr>";
     endforeach;

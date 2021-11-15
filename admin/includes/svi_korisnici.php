@@ -1,4 +1,4 @@
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover" id="example">
     <thead>
         <tr>
             <th>ID</th>
@@ -40,7 +40,8 @@
             echo "<td>$korisnik_uloga</td>";
             echo "<td>" . date('d-m-Y') . "</td>";                           
 
-            echo "<td><a href='korisnici.php?source=izmeni_korisnika&k_id={$korisnik_id}'><i class='fa fa-fw fa-edit'></i>Izmeni</a>";
+            $korisnik_link = $korisnik_id == $_SESSION["user_id"] ? "profil.php" : "korisnici.php?source=izmeni_korisnika&k_id={$korisnik_id}";
+            echo "<td><a href='{$korisnik_link}'><i class='fa fa-fw fa-edit'></i>Izmeni</a>";
             echo "<a style='margin-left: 20px;'href='korisnici.php?izbrisi={$korisnik_id}' onclick=\"return confirm('Da li ste sigurni da želite da izbrišete korisnika?');\"><i class='fa fa-fw fa-times-circle'></i>Izbriši</a></td>";
             
             
